@@ -1,0 +1,32 @@
+.wrapper {
+  height: 100vh;
+  padding: 2rem;
+}
+
+/* counter */
+
+.counter {
+  margin-bottom: 5rem;
+}
+
+/* countainer-tasks */
+
+.countainer-tasks {
+  display: flex;
+  align-items: center;
+}
+
+.btnPlus {
+  padding: 10px 20px;
+  margin-right: 1rem;
+}
+
+.details-tekst {
+  margin-right: 2rem;
+}
+
+/* LIST */
+
+.details-list {
+  margin-top: 4rem;
+}
