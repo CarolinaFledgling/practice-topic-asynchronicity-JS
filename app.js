@@ -31,19 +31,32 @@ const addNewLink = () => {
         const newLinkTekst = document.createElement('li')
         newLinkTekst.innerText = inputTeskt.value;
         ulList.appendChild(newLinkTekst);
+        creatLi();
 
-        // dla ustawionego czasu 
-        const newLinkTime = document.querySelector('li');
-        newLinkTime.innerText = inputSetTime.value;
-        newLinkTekst.appendChild(newLinkTime)
-
-        // jeśli jest prawdziwe to wyczyść 
         alertInfo.innerText = '';
         inputTeskt.value = '';
+
+
     } else {
         alertInfo.innerText = " Alert ! Wpisz jakiś tekst"
 
     }
+
+}
+
+function creatLi() {
+    // tworze diva który będzie przechowywał  guzik do usunięcia i nas ustawiony czas 
+    const panelDiv = document.createElement('div');
+    ulList.appendChild(panelDiv)
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'usuń';
+
+    const newLinkTime = document.createElement('p')
+    newLinkTime.innerText = inputSetTime.value;
+
+    panelDiv.appendChild(deleteBtn)
+    panelDiv.appendChild(newLinkTime)
 
 }
 
