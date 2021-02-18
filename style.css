@@ -1,6 +1,7 @@
 .wrapper {
   height: 100vh;
   padding: 2rem;
+  width: 500px;
 }
 
 /* counter */
@@ -31,15 +32,16 @@
   margin-top: 4rem;
 }
 
-/* .panelDiv{
-    display: inline-block;
+.panel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
 }
 
-li{
+.ul-list{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     margin: 15px;
     padding-left: 20px;
-    text-align: left;
-} */
+}

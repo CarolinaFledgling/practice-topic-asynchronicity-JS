@@ -28,10 +28,10 @@ const addNewLink = () => {
 
     if (inputTeskt.value !== '') {
         // dla wpisanego tekstu 
-        const newLinkTekst = document.createElement('li')
-        newLinkTekst.innerText = inputTeskt.value;
-        ulList.appendChild(newLinkTekst);
-        creatLi();
+        // const newLinkTekst = document.createElement('li')
+        // newLinkTekst.innerText = inputTeskt.value;
+        // ulList.appendChild(newLinkTekst);
+        creatDiv();
 
         alertInfo.innerText = '';
         inputTeskt.value = '';
@@ -44,10 +44,14 @@ const addNewLink = () => {
 
 }
 
-function creatLi() {
-    // tworze diva który będzie przechowywał  guzik do usunięcia i nas ustawiony czas 
+function creatDiv() {
+    // tworze diva który będzie przechowywał  guzik do usunięcia i nasz ustawiony czas
     const panelDiv = document.createElement('div');
+    panelDiv.classList.add('panel')
     ulList.appendChild(panelDiv)
+
+    const newLinkTekst = document.createElement('li')
+    newLinkTekst.innerText = inputTeskt.value;
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'usuń';
@@ -55,8 +59,11 @@ function creatLi() {
     const newLinkTime = document.createElement('p')
     newLinkTime.innerText = inputSetTime.value;
 
-    panelDiv.appendChild(deleteBtn)
+    panelDiv.appendChild(newLinkTekst)
     panelDiv.appendChild(newLinkTime)
+    panelDiv.appendChild(deleteBtn)
+
+
 
 }
 
