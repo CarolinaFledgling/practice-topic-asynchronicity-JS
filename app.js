@@ -17,7 +17,6 @@
 const inputTeskt = document.querySelector('.input__tekst');
 const inputSetTime = document.querySelector('.time');
 const btnAdd = document.querySelector('.btnPlus');
-const counterTime = document.querySelector('.counter__time');
 const ulList = document.querySelector('.ul-list');
 const alertInfo = document.querySelector('.alert-info')
 
@@ -39,7 +38,7 @@ const addNewLink = () => {
 
 function creatDiv() {
     // tworze diva który będzie przechowywał  wpisany tekst /guzik do usunięcia i nasz ustawiony czas
-  
+
     const panelDiv = document.createElement('div');
     panelDiv.classList.add('panel');
     ulList.appendChild(panelDiv);
@@ -86,3 +85,42 @@ ulList.addEventListener('click', deleteElement)
 
 
 // Timer 
+
+const btnStartCounter = document.querySelector('.btnStart');
+const btnStopCounter = document.querySelector('.btnStop');
+const btnResetCounter = document.querySelector('.btnReset');
+const counterTime = document.querySelector('.counter__time')
+let number = 0;
+let idSetInterval = false;
+
+function startTimer() {
+    idSetInterval = true; // nie moge ponownie kliknac bo handleClick, zamieni sie na false i nie wchodzi do srodka wiec nie odpala nam ponownie startTimer()
+    idSetInterval = setInterval(() => {
+        number++;
+        counterTime.textContent = number;
+
+    }, 1000)
+}
+
+function stopTimer() {
+    clearInterval(idSetInterval)
+    idSetInterval = false;
+}
+
+function handleClick() {
+    if (!idSetInterval) {
+        startTimer();
+    }
+}
+
+function resetClick(e) {
+    number = 0;
+    counterTime.textContent = 0;
+    clearInterval(idSetInterval);
+    idSetInterval = false;
+  
+}
+
+btnStartCounter.addEventListener('click', handleClick)
+btnStopCounter.addEventListener('click', stopTimer)
+btnResetCounter.addEventListener('click', resetClick)
