@@ -1,16 +1,23 @@
 // Pytania do projektu 
 
-// 1. 
-// 2. 
+// 1. Czy mogę zrobić wersje najpierw z tekstem zamiast tego url ? odkryłam :D ze moge ustawic input type="url", ale nie rozumiem o co chodzi z tym placeholderem , ze ma sie tam wyswietlić obrazek z linku , ale przecież placeholder to np w nim umieszczamy jakiś tekst który pojawia sie w inpucie hmmm  
 
 
-// Kroki do wykonania 
+// 2. Czy to ma byc stoper czy po prostu jakiś licznik , hmm dobra licznik a stoper to chyba to samo:D , ale chodzi mi bardziej czy ma odliczać po włączeniu 1, 2, 3, 4, 5 itd (tak jak teraz działa ) , czy działaś jak stoper czyli 00:00:00 ( czyli wersja której nie umiałam ostatnio zrobić ale mogę poszukać odp na necie )
+
+
+// 3. nie wiem czy dobry input wykorzystałam input type="time" , czy może tutaj powinnam wykorzystać coś innego ? , bo przecież kolejny krok to chyba jakoś połączyć to czyli ustawiony czas  z czasem ktory wybije nasz timer 
+
+
+
+// Moje Kroki które muszę wykonać:
 
 // 1. Stworzenie markup w html 
-// 2. Stworzyć funkcję która Po wpisaniu w inpucie link/tekst i ustawieniu czasu to ma sie wszystko  wyświetlić poniżej w liście ul
-// 3. Napisanie funkcjonalnosci do głównego licznika , plus guzik start stop reset
-// 4. Połączenie ustawionego czasu z inputa  a nasz licznik - czyli 
-//         ustaliliśmy czas w inpucie 00:10 to wtedy kiedy licznik osiągnie 00:10 to ma nam wyświetlić obrazek 
+// 2. Stworzyć funkcjonalnosc, która po wpisaniu w inpukt jakis tekst i ustawieniu czasu , wyświetli nam sie to w naszym ul
+// 3. Napisanie funkcji która będzie usuwać nasz dodany element z tymi 3 rzeczami(tekst,czas,guzik)
+// 4. Napisanie funkcjonalnosci do głównego licznika , plus guziki start stop reset
+// 5. Połączenie ustawionego czasu z inputa  a nasz licznik - czyli 
+//         ustaliliśmy czas w np 00:10 to wtedy kiedy licznik osiągnie 00:10 to ma nam wyświetlić obrazek / wersja druga cos zrobic z tekstem 
 
 
 
@@ -64,7 +71,7 @@ function creatDiv() {
 // Usunięcie elementu z naszej listy 
 
 function deleteElement(e) {
-    // nasze e to event który przechwytamy , tutaj e to nasz Click / ,puse event 
+    // nasze e to event który przechwytamy , tutaj e to nasz Click / mouse event 
     // sprawdzamy czy najbliższy button elementu w który kliknęliśmy zawiera klase btnDelete
     if (e.target.closest('button').classList.contains('btnDelete')) {
         console.log(e)
