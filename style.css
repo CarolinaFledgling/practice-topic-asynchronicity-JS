@@ -1,7 +1,7 @@
 .wrapper {
   height: 100vh;
   padding: 2rem;
-  width: 500px;
+  margin: 0 auto;
 }
 
 /* counter */
@@ -32,16 +32,36 @@
   margin-top: 4rem;
 }
 
-.panel{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.ul-list{
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-    padding-left: 20px;
+.ul-list {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  padding-left: 20px;
+}
+
+li {
+  margin: 0 0 0 3rem;
+}
+
+img {
+  margin: 1rem;
+}
+
+p {
+  margin: 0 4rem;
+}
+
+.time {
+  width: 40px;
+}
+
+.counter__time {
+  margin: 2rem 0;
+  
 }

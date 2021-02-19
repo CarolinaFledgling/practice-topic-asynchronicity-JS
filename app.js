@@ -1,15 +1,3 @@
-// Pytania do projektu 
-
-// 1. Czy mogę zrobić wersje najpierw z tekstem zamiast tego url ? odkryłam :D ze moge ustawic input type="url", ale nie rozumiem o co chodzi z tym placeholderem , ze ma sie tam wyswietlić obrazek z linku , ale przecież placeholder to np w nim umieszczamy jakiś tekst który pojawia sie w inpucie hmmm  
-
-
-// 2. Czy to ma byc stoper czy po prostu jakiś licznik , hmm dobra licznik a stoper to chyba to samo:D , ale chodzi mi bardziej czy ma odliczać po włączeniu 1, 2, 3, 4, 5 itd (tak jak teraz działa ) , czy działaś jak stoper czyli 00:00:00 ( czyli wersja której nie umiałam ostatnio zrobić ale mogę poszukać odp na necie )
-
-
-// 3. nie wiem czy dobry input wykorzystałam input type="time" , czy może tutaj powinnam wykorzystać coś innego ? , bo przecież kolejny krok to chyba jakoś połączyć to czyli ustawiony czas  z czasem ktory wybije nasz timer 
-
-
-
 // Moje Kroki które muszę wykonać:
 
 // 1. Stworzenie markup w html 
@@ -38,7 +26,7 @@ const addNewLink = () => {
         alertInfo.innerText = '';
         inputTeskt.value = '';
     } else {
-        alertInfo.innerText = " Alert ! Wpisz jakiś tekst i wybierz czas"
+        alertInfo.innerText = " Alert ! Wpisz jakiś url i wybierz czas"
     }
 
 }
@@ -50,8 +38,12 @@ function creatDiv() {
     panelDiv.classList.add('panel');
     ulList.appendChild(panelDiv);
 
-    const newLinkTekst = document.createElement('li');
-    newLinkTekst.innerText = inputTeskt.value;
+    const UrlLink = document.createElement('li');
+    UrlLink.innerText = inputTeskt.value;
+
+    const img = document.createElement('img');
+    img.style.width = '400px';
+    img.src = inputTeskt.value;
 
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btnDelete');
@@ -60,7 +52,8 @@ function creatDiv() {
     const newLinkTime = document.createElement('p');
     newLinkTime.innerText = inputSetTime.value;
 
-    panelDiv.appendChild(newLinkTekst);
+    panelDiv.appendChild(img)
+    panelDiv.appendChild(UrlLink);
     panelDiv.appendChild(newLinkTime);
     panelDiv.appendChild(deleteBtn);
 
@@ -125,7 +118,7 @@ function resetClick(e) {
     counterTime.textContent = 0;
     clearInterval(idSetInterval);
     idSetInterval = false;
-  
+
 }
 
 btnStartCounter.addEventListener('click', handleClick)
