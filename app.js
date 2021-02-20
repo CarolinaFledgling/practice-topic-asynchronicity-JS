@@ -17,6 +17,7 @@ const ulList = document.querySelector('.ul-list');
 const alertInfo = document.querySelector('.alert-info')
 
 let img = null;
+let wpisanyCzas = null;
 
 
 
@@ -54,6 +55,8 @@ function creatDiv() {
 
     const newLinkTime = document.createElement('p');
     newLinkTime.innerText = inputSetTime.value;
+    wpisanyCzas = inputSetTime.value;
+    console.log(wpisanyCzas)
 
     panelDiv.appendChild(img)
     panelDiv.appendChild(UrlLink);
@@ -101,6 +104,7 @@ function startTimer() {
     idSetInterval = setInterval(() => {
         number++;
         counterTime.textContent = number;
+        console.log(number)
 
     }, 1000)
 
@@ -157,15 +161,18 @@ function change2() {
 
 
     }).then(function () {
-        if (naszWpisanyczas === b) {
-            btnAdd.style.backgroundColor = 'black'
+        if (naszWpisanyczas === naszCzasZTimera) {
+            img = document.createElement('img');
+            img.style.width = '400px';
+            img.src = inputTeskt.value;
+            //wyswietl obrazek 
         } else {
             console.log('nie rob nic ')
         }
 
-        //wyswietl obrazek 
+
     })
 }
-naszWpisanyczas = 4000;
-b = 5000
+naszWpisanyczas = wpisanyCzas;
+naszCzasZTimera = number;
 change2()
