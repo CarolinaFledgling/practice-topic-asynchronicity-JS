@@ -6,6 +6,7 @@
 // 4. Napisanie funkcjonalnosci do głównego licznika , plus guziki start stop reset
 // 5. Połączenie ustawionego czasu z inputa  a nasz licznik - czyli 
 //         ustaliliśmy czas w np 00:10 to wtedy kiedy licznik osiągnie 00:10 to ma nam wyświetlić obrazek / wersja druga cos zrobic z tekstem 
+// Co ja musze zrobić wpisuje 
 
 
 
@@ -14,6 +15,8 @@ const inputSetTime = document.querySelector('.time');
 const btnAdd = document.querySelector('.btnPlus');
 const ulList = document.querySelector('.ul-list');
 const alertInfo = document.querySelector('.alert-info')
+
+let img = null;
 
 
 
@@ -41,7 +44,7 @@ function creatDiv() {
     const UrlLink = document.createElement('li');
     UrlLink.innerText = inputTeskt.value;
 
-    const img = document.createElement('img');
+    img = document.createElement('img');
     img.style.width = '400px';
     img.src = inputTeskt.value;
 
@@ -100,6 +103,7 @@ function startTimer() {
         counterTime.textContent = number;
 
     }, 1000)
+
 }
 
 function stopTimer() {
@@ -124,3 +128,44 @@ function resetClick(e) {
 btnStartCounter.addEventListener('click', handleClick)
 btnStopCounter.addEventListener('click', stopTimer)
 btnResetCounter.addEventListener('click', resetClick)
+
+
+
+
+// Przykład 
+
+// po uplywie 5s zmien kolor guzika btn  
+
+
+
+// function change() {
+//     return new Promise(function (resolve, reject) {
+//         setTimeout(resolve, ms)
+//     }).then(function () {
+//         btnAdd.style.backgroundColor = 'red'
+//     })
+// }
+// ms = 5000;
+// change()
+
+// po upływie czasu który ustaliliśmy w "dodaj czas", wyświetl obrazek 
+
+function change2() {
+    return new Promise(function (resolve, reject) {
+
+        setTimeout(resolve, naszWpisanyczas)
+
+
+    }).then(function () {
+        if (naszWpisanyczas === b) {
+            btnAdd.style.backgroundColor = 'black'
+        } else {
+            console.log('nie rob nic ')
+        }
+
+        //wyswietl obrazek 
+    })
+}
+naszWpisanyczas = 4000;
+b = 5000
+change2()
