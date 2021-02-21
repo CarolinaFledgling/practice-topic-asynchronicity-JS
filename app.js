@@ -16,9 +16,37 @@ const btnAdd = document.querySelector('.btnPlus');
 const ulList = document.querySelector('.ul-list');
 const alertInfo = document.querySelector('.alert-info')
 
+
+
 let img = null;
 let wpisanyCzas = null;
+let panelDiv = null;
 
+
+function addToTheList() {
+
+    return new Promise(function (resolve, reject) {
+        //obiecuje ze jeżeli czas z timera i wpisany czas bedą rowne
+        if (naszWpisanyczas === naszCzasZTimera) {
+            resolve('są równe')
+        } else {
+            reject('nie sa równe')
+        }
+
+    }).then((res) => {
+        //to wyświetle ci obraz z linku ?
+
+        console.log(res)
+        img = document.createElement('img');
+        img.style.width = '400px';
+        img.src = inputTeskt.value;
+        panelDiv.appendChild(img)
+
+
+    }).catch((err) => {
+        console.log(err, 'nie sa równe')
+    })
+}
 
 
 
@@ -33,12 +61,13 @@ const addNewLink = () => {
         alertInfo.innerText = " Alert ! Wpisz jakiś url i wybierz czas"
     }
 
+
 }
 
 function creatDiv() {
     // tworze diva który będzie przechowywał  wpisany tekst /guzik do usunięcia i nasz ustawiony czas
 
-    const panelDiv = document.createElement('div');
+    panelDiv = document.createElement('div');
     panelDiv.classList.add('panel');
     ulList.appendChild(panelDiv);
 
@@ -58,14 +87,21 @@ function creatDiv() {
     wpisanyCzas = inputSetTime.value;
     console.log(wpisanyCzas)
 
-    panelDiv.appendChild(img)
+    // img = document.createElement('img');
+    // img.style.width = '400px';
+    // img.src = inputTeskt.value;
+
+
+    // panelDiv.appendChild(img)
     panelDiv.appendChild(UrlLink);
     panelDiv.appendChild(newLinkTime);
     panelDiv.appendChild(deleteBtn);
-
-
+    addToTheList()
 
 }
+
+naszWpisanyczas = wpisanyCzas;
+
 
 // Usunięcie elementu z naszej listy 
 
@@ -110,6 +146,8 @@ function startTimer() {
 
 }
 
+naszCzasZTimera = number;
+
 function stopTimer() {
     clearInterval(idSetInterval)
     idSetInterval = false;
@@ -135,7 +173,6 @@ btnResetCounter.addEventListener('click', resetClick)
 
 
 
-
 // Przykład 
 
 // po uplywie 5s zmien kolor guzika btn  
@@ -151,28 +188,3 @@ btnResetCounter.addEventListener('click', resetClick)
 // }
 // ms = 5000;
 // change()
-
-// po upływie czasu który ustaliliśmy w "dodaj czas", wyświetl obrazek 
-
-function change2() {
-    return new Promise(function (resolve, reject) {
-
-        setTimeout(resolve, naszWpisanyczas)
-
-
-    }).then(function () {
-        if (naszWpisanyczas === naszCzasZTimera) {
-            img = document.createElement('img');
-            img.style.width = '400px';
-            img.src = inputTeskt.value;
-            //wyswietl obrazek 
-        } else {
-            console.log('nie rob nic ')
-        }
-
-
-    })
-}
-naszWpisanyczas = wpisanyCzas;
-naszCzasZTimera = number;
-change2()
