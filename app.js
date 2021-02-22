@@ -27,11 +27,7 @@ function addToTheList() {
 
     return new Promise(function (resolve, reject) {
         //obiecuje ze jeżeli czas z timera i wpisany czas bedą rowne
-        if (naszWpisanyczas === naszCzasZTimera) {
-            resolve('są równe')
-        } else {
-            reject('nie sa równe')
-        }
+      
 
     }).then((res) => {
         //to wyświetle ci obraz z linku ?
@@ -137,7 +133,7 @@ let idSetInterval = false;
 
 function startTimer() {
     idSetInterval = true; // nie moge ponownie kliknac bo handleClick, zamieni sie na false i nie wchodzi do srodka wiec nie odpala nam ponownie startTimer()
-    idSetInterval = setInterval(() => {
+    idSetInterval = setIntervalse(() => {
         number++;
         counterTime.textContent = number;
         console.log(number)
