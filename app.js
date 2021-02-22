@@ -18,14 +18,10 @@ function change(panelDiv) {
             resolve(panelDiv)
         }, timeFromInput)
     }).then(function (panelDiv) {
-        // tworze tutaj nowego div zeby moc go dodac do ul list, nie moge wciaz panelDiv z funkcji createDiv bo go nie widzi w promise 
-        // const panelDiv1 = document.createElement('div');
-        // panelDiv1.classList.add('panel');
-        // ulList.appendChild(panelDiv1);
         img = document.createElement('img');
         img.style.width = '400px';
         img.src = inputTeskt.value;
-        panelDiv.appendChild(img)
+        panelDiv.prepend(img)
 
     })
 }
@@ -54,9 +50,9 @@ function creatListElement() {
 
         const ourSetTime = document.createElement('p');
         ourSetTime.innerText = inputSetTime.value;
-      
+
         console.log(inputSetTime.value)
-        
+
         panelDiv.appendChild(UrlLink);
         panelDiv.appendChild(ourSetTime);
         panelDiv.appendChild(deleteBtn);
@@ -64,8 +60,9 @@ function creatListElement() {
 
         alertInfo.innerText = '';
         inputSetTime.value = '';
-
         
+
+
     } else {
         alertInfo.innerText = " Alert ! Wpisz jakiś url i wybierz czas"
     }
