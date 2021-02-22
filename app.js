@@ -32,13 +32,13 @@ function change() {
     }).then(function () {
 
         // tworze tutaj nowego div zeby moc go dodac do ul list, nie moge wciaz panelDiv z funkcji createDiv bo go nie widzi w promise 
-        const panelDiv1 = document.createElement('div');
-        panelDiv1.classList.add('panel');
-        ulList.appendChild(panelDiv1);
+        // const panelDiv1 = document.createElement('div');
+        // panelDiv1.classList.add('panel');
+        // ulList.appendChild(panelDiv1);
         img = document.createElement('img');
         img.style.width = '400px';
         img.src = inputTeskt.value;
-        panelDiv1.appendChild(img)
+        panelDiv.appendChild(img)
 
     })
 }
