@@ -9,14 +9,11 @@ const alertInfo = document.querySelector('.alert-info')
 let img = null;
 
 
-// próby zrobienia bez podpięcia timera , tylko zwykły settimeout po upływie 5 ma wyswietlic obrazek z linku 
-
-
 function change(panelDiv) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             resolve(panelDiv)
-        }, timeFromInput)
+        }, inputSetTime.value)
     }).then(function (panelDiv) {
         img = document.createElement('img');
         img.style.width = '400px';
@@ -26,11 +23,6 @@ function change(panelDiv) {
     })
 }
 
-//dla sprawdzenia czy działa po prostu z góry wpisana wartościa 
-timeFromInput = 5000;
-
-
-// }
 
 function creatListElement() {
     // tworze diva który będzie przechowywał  wpisany tekst /guzik do usunięcia i nasz ustawiony czas
@@ -42,14 +34,13 @@ function creatListElement() {
         const UrlLink = document.createElement('li');
         UrlLink.innerText = inputTeskt.value;
 
-
-
         const deleteBtn = document.createElement('button');
         deleteBtn.classList.add('btnDelete');
         deleteBtn.textContent = 'usuń';
 
         const ourSetTime = document.createElement('p');
         ourSetTime.innerText = inputSetTime.value;
+        ourTimeInInput = inputSetTime.value;
 
         console.log(inputSetTime.value)
 
@@ -60,7 +51,8 @@ function creatListElement() {
 
         alertInfo.innerText = '';
         inputSetTime.value = '';
-        
+
+
 
 
     } else {
@@ -89,4 +81,49 @@ function deleteElement(e) {
 
 
 btnAdd.addEventListener('click', creatListElement);
-ulList.addEventListener('click', deleteElement)
+ulList.addEventListener('click', deleteElement);
+
+// Timer 
+
+const btnStartCounter = document.querySelector('.btnStart');
+const btnStopCounter = document.querySelector('.btnStop');
+const btnResetCounter = document.querySelector('.btnReset');
+const counterTime = document.querySelector('.counter__time')
+let number = 0;
+let idSetInterval = false;
+
+function startTimer() {
+    idSetInterval = true; // nie moge ponownie kliknac bo handleClick, zamieni sie na false i nie wchodzi do srodka wiec nie odpala nam ponownie startTimer()
+    idSetInterval = setInterval(() => {
+        number++;
+        counterTime.textContent = number;
+        console.log(number)
+
+    }, 1000)
+
+}
+
+naszCzasZTimera = number;
+
+function stopTimer() {
+    clearInterval(idSetInterval)
+    idSetInterval = false;
+}
+
+function handleClick() {
+    if (!idSetInterval) {
+        startTimer();
+    }
+}
+
+function resetClick(e) {
+    number = 0;
+    counterTime.textContent = 0;
+    clearInterval(idSetInterval);
+    idSetInterval = false;
+
+}
+
+btnStartCounter.addEventListener('click', handleClick)
+btnStopCounter.addEventListener('click', stopTimer)
+btnResetCounter.addEventListener('click', resetClick)
