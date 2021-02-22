@@ -1,15 +1,3 @@
-// Moje Kroki które muszę wykonać:
-
-// 1. Stworzenie markup w html 
-// 2. Stworzyć funkcjonalnosc, która po wpisaniu w inpukt jakis tekst i ustawieniu czasu , wyświetli nam sie to w naszym ul
-// 3. Napisanie funkcji która będzie usuwać nasz dodany element z tymi 3 rzeczami(tekst,czas,guzik)
-// 4. Napisanie funkcjonalnosci do głównego licznika , plus guziki start stop reset
-// 5. Połączenie ustawionego czasu z inputa  a nasz licznik - czyli 
-//         ustaliliśmy czas w np 00:10 to wtedy kiedy licznik osiągnie 00:10 to ma nam wyświetlić obrazek / wersja druga cos zrobic z tekstem 
-// Co ja musze zrobić wpisuje 
-
-
-
 const inputTeskt = document.querySelector('.input__tekst');
 const inputSetTime = document.querySelector('.time');
 const btnAdd = document.querySelector('.btnPlus');
@@ -19,74 +7,75 @@ const alertInfo = document.querySelector('.alert-info')
 
 
 let img = null;
-let wpisanyCzas = null;
-let panelDiv = null;
 
 
-function addToTheList() {
+// próby zrobienia bez podpięcia timera , tylko zwykły settimeout po upływie 5 ma wyswietlic obrazek z linku 
 
+
+function change(panelDiv) {
     return new Promise(function (resolve, reject) {
-        //obiecuje ze jeżeli czas z timera i wpisany czas bedą rowne
-      
-
-    }).then((res) => {
-        //to wyświetle ci obraz z linku ?
-
-        console.log(res)
+        setTimeout(function () {
+            resolve(panelDiv)
+        }, timeFromInput)
+    }).then(function (panelDiv) {
+        // tworze tutaj nowego div zeby moc go dodac do ul list, nie moge wciaz panelDiv z funkcji createDiv bo go nie widzi w promise 
+        // const panelDiv1 = document.createElement('div');
+        // panelDiv1.classList.add('panel');
+        // ulList.appendChild(panelDiv1);
         img = document.createElement('img');
         img.style.width = '400px';
         img.src = inputTeskt.value;
         panelDiv.appendChild(img)
 
-
-    }).catch((err) => {
-        console.log(err, 'nie sa równe')
     })
 }
 
+//dla sprawdzenia czy działa po prostu z góry wpisana wartościa 
+timeFromInput = 5000;
 
 
+// }
 
-function creatDiv() {
+function creatListElement() {
     // tworze diva który będzie przechowywał  wpisany tekst /guzik do usunięcia i nasz ustawiony czas
+    if (inputTeskt.value !== '' && inputSetTime.value !== '') {
+        const panelDiv = document.createElement('div');
+        panelDiv.classList.add('panel');
+        ulList.appendChild(panelDiv);
 
-    panelDiv = document.createElement('div');
-    panelDiv.classList.add('panel');
-    ulList.appendChild(panelDiv);
-
-    const UrlLink = document.createElement('li');
-    UrlLink.innerText = inputTeskt.value;
-
-    img = document.createElement('img');
-    img.style.width = '400px';
-    img.src = inputTeskt.value;
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.classList.add('btnDelete');
-    deleteBtn.textContent = 'usuń';
-
-    const newLinkTime = document.createElement('p');
-    newLinkTime.innerText = inputSetTime.value;
-    wpisanyCzas = inputSetTime.value;
-    console.log(wpisanyCzas)
-
-    // img = document.createElement('img');
-    // img.style.width = '400px';
-    // img.src = inputTeskt.value;
+        const UrlLink = document.createElement('li');
+        UrlLink.innerText = inputTeskt.value;
 
 
-    // panelDiv.appendChild(img)
-    panelDiv.appendChild(UrlLink);
-    panelDiv.appendChild(newLinkTime);
-    panelDiv.appendChild(deleteBtn);
-    addToTheList()
 
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('btnDelete');
+        deleteBtn.textContent = 'usuń';
+
+        const ourSetTime = document.createElement('p');
+        ourSetTime.innerText = inputSetTime.value;
+      
+        console.log(inputSetTime.value)
+        
+        panelDiv.appendChild(UrlLink);
+        panelDiv.appendChild(ourSetTime);
+        panelDiv.appendChild(deleteBtn);
+        change(panelDiv)
+
+        alertInfo.innerText = '';
+        inputSetTime.value = '';
+
+        
+    } else {
+        alertInfo.innerText = " Alert ! Wpisz jakiś url i wybierz czas"
+    }
 }
 
-naszWpisanyczas = wpisanyCzas;
 
 
-// Usunięcie elementu z naszej listy 
+
+
+//Usunięcie elementu z naszej listy 
 
 function deleteElement(e) {
     // nasze e to event który przechwytamy , tutaj e to nasz Click / mouse event 
@@ -102,8 +91,5 @@ function deleteElement(e) {
 
 
 
-btnAdd.addEventListener('click', addNewLink);
+btnAdd.addEventListener('click', creatListElement);
 ulList.addEventListener('click', deleteElement)
-
-
-
