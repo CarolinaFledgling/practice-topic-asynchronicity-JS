@@ -19,30 +19,33 @@ const alertInfo = document.querySelector('.alert-info')
 
 
 let img = null;
-let wpisanyCzas = null;
-let panelDiv = null;
 
 
-function addToTheList() {
+// próby zrobienia bez podpięcia timera , tylko zwykły settimeout po upływie 5 ma wyswietlic obrazek z linku 
 
+
+function change() {
     return new Promise(function (resolve, reject) {
-        //obiecuje ze jeżeli czas z timera i wpisany czas bedą rowne
-      
-
-    }).then((res) => {
-        //to wyświetle ci obraz z linku ?
-
-        console.log(res)
+        setTimeout(function () {
+            resolve()
+        }, timeFromInput)
+    }).then(function () {
+        const panelDiv1 = document.createElement('div');
+        panelDiv1.classList.add('panel');
+        ulList.appendChild(panelDiv1);
         img = document.createElement('img');
         img.style.width = '400px';
         img.src = inputTeskt.value;
-        panelDiv.appendChild(img)
+        panelDiv1.appendChild(img)
 
-
-    }).catch((err) => {
-        console.log(err, 'nie sa równe')
     })
 }
+
+//dla sprawdzenia czy działa po prostu z góry wpisana wartościa 
+timeFromInput = 5;
+
+
+
 
 
 
@@ -63,16 +66,13 @@ const addNewLink = () => {
 function creatDiv() {
     // tworze diva który będzie przechowywał  wpisany tekst /guzik do usunięcia i nasz ustawiony czas
 
-    panelDiv = document.createElement('div');
+    const panelDiv = document.createElement('div');
     panelDiv.classList.add('panel');
     ulList.appendChild(panelDiv);
 
     const UrlLink = document.createElement('li');
     UrlLink.innerText = inputTeskt.value;
 
-    img = document.createElement('img');
-    img.style.width = '400px';
-    img.src = inputTeskt.value;
 
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btnDelete');
@@ -80,26 +80,27 @@ function creatDiv() {
 
     const newLinkTime = document.createElement('p');
     newLinkTime.innerText = inputSetTime.value;
-    wpisanyCzas = inputSetTime.value;
-    console.log(wpisanyCzas)
+    timeFromInput = inputSetTime.value;
+    console.log(timeFromInput)
 
     // img = document.createElement('img');
     // img.style.width = '400px';
     // img.src = inputTeskt.value;
 
 
-    // panelDiv.appendChild(img)
+  
     panelDiv.appendChild(UrlLink);
     panelDiv.appendChild(newLinkTime);
     panelDiv.appendChild(deleteBtn);
-    addToTheList()
+    change()
 
 }
 
-naszWpisanyczas = wpisanyCzas;
+// nie wiem czy dobrze , wyciągnięcie naszego czasu wpisanego w input do zakresu globalnego 
+ourTimefromInput = timeFromInput
 
 
-// Usunięcie elementu z naszej listy 
+//Usunięcie elementu z naszej listy 
 
 function deleteElement(e) {
     // nasze e to event który przechwytamy , tutaj e to nasz Click / mouse event 
@@ -123,6 +124,8 @@ ulList.addEventListener('click', deleteElement)
 
 
 // Timer 
+
+
 
 const btnStartCounter = document.querySelector('.btnStart');
 const btnStopCounter = document.querySelector('.btnStop');
@@ -169,18 +172,20 @@ btnResetCounter.addEventListener('click', resetClick)
 
 
 
-// Przykład 
+//Przykład 
 
-// po uplywie 5s zmien kolor guzika btn  
+//po uplywie 5s zmien kolor guzika btn  
 
 
 
-// function change() {
-//     return new Promise(function (resolve, reject) {
-//         setTimeout(resolve, ms)
-//     }).then(function () {
-//         btnAdd.style.backgroundColor = 'red'
-//     })
-// }
-// ms = 5000;
-// change()
+function change2() {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve()
+        }, ms)
+    }).then(function () {
+        btnAdd.style.backgroundColor = 'red'
+    })
+}
+ms = 5000;
+change2()
