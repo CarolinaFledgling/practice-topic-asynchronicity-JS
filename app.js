@@ -30,6 +30,8 @@ function change() {
             resolve()
         }, timeFromInput)
     }).then(function () {
+
+        // tworze tutaj nowego div zeby moc go dodac do ul list, nie moge wciaz panelDiv z funkcji createDiv bo go nie widzi w promise 
         const panelDiv1 = document.createElement('div');
         panelDiv1.classList.add('panel');
         ulList.appendChild(panelDiv1);
@@ -42,7 +44,7 @@ function change() {
 }
 
 //dla sprawdzenia czy działa po prostu z góry wpisana wartościa 
-timeFromInput = 5;
+timeFromInput = 5000;
 
 
 
