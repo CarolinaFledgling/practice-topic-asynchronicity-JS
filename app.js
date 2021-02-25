@@ -13,15 +13,15 @@ let img = null;
 function change(panelDiv) {
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
-            resolve(panelDiv)
+            resolve(panelDiv)  // robię tutaj obietnice ze jak po upłynięcu ustalonego czasu wyswwietle panel div ?
         }, inputSetTime.value)
-    }).then(function (panelDiv) {
+    }).then(function () {
         img = document.createElement('img');
         img.style.width = '400px';
         img.src = inputTeskt.value;
         panelDiv.prepend(img)
 
-    })
+    }).catch((err)=>console.log(err,'mamy bląd'))
 }
 
 
@@ -94,7 +94,7 @@ let number = 0;
 let idSetInterval = false;
 
 function startTimer() {
-    idSetInterval = true; // nie moge ponownie kliknac bo handleClick, zamieni sie na false i nie wchodzi do srodka wiec nie odpala nam ponownie startTimer()
+    idSetInterval = true; // to blokuje  ponownie kliknac bo handleClick, zamieni sie na false i nie wchodzi do srodka wiec nie odpala nam ponownie startTimer()
     idSetInterval = setInterval(() => {
         number++;
         counterTime.textContent = number;
